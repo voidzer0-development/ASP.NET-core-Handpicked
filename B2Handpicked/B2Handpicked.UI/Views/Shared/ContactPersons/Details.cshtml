@@ -1,0 +1,39 @@
+﻿@model B2Handpicked.DomainModel.ContactPerson
+
+<ul class="demo-list-two mdl-list">
+    <li class="mdl-list__item mdl-list__item--two-line">
+        <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon">person</i>
+            <span>@Html.DisplayNameFor(model => model.Name)</span>
+            <span class="mdl-list__item-sub-title">@Model.Name</span>
+        </span>
+    </li>
+    <li class="mdl-list__item mdl-list__item--two-line">
+        <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon">email</i>
+            <span>@Html.DisplayNameFor(model => model.Email)</span>
+            <span class="mdl-list__item-sub-title">@Model.Email</span>
+        </span>
+    </li>
+    <li class="mdl-list__item mdl-list__item--two-line">
+        <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon">phone</i>
+            <span>@Html.DisplayNameFor(model => model.PhoneNumber)</span>
+            <span class="mdl-list__item-sub-title">@Model.PhoneNumber</span>
+        </span>
+    </li>
+    <li class="mdl-list__item mdl-list__item--two-line">
+        <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon">business</i>
+            <span>Customer</span>
+            <span class="mdl-list__item-sub-title">@(Model.Customer?.Name ?? "None")</span>
+        </span>
+    </li>
+    <li class="mdl-list__item mdl-list__item--two-line">
+        <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon"></i>
+            <span>Label</span>
+            <span class="mdl-list__item-sub-title">@(Model.Label?.Name ?? "None")</span>
+        </span>
+    </li>
+</ul>

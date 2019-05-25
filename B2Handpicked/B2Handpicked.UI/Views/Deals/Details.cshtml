@@ -1,0 +1,15 @@
+﻿@model B2Handpicked.DomainModel.Deal
+
+@{
+    ViewData["Title"] = "Deal details";
+}
+
+<h4>Deal details</h4>
+
+<partial name="Deals/Details" model="Model"/>
+
+<a asp-action="Edit" asp-route-id="@Model.Id">
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-button--fab_bottom-right">
+        <i class="material-icons">edit</i>
+    </button>
+</a>

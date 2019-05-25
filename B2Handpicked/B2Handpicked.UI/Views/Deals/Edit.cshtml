@@ -1,0 +1,37 @@
+﻿@model B2Handpicked.DomainModel.Deal
+
+@{
+    ViewData["Title"] = "Edit deal";
+}
+
+<h4>Edit deal</h4>
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" asp-for="Title">
+        <label class="mdl-textfield__label" asp-for="Title"></label>
+        <span asp-validation-for="Title" class="mdl-textfield__error"></span>
+    </div>
+    <br><br>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" asp-for="Value">
+        <label class="mdl-textfield__label" asp-for="Value"></label>
+        <span asp-validation-for="Value" class="mdl-textfield__error"></span>
+    </div>
+    <br><br>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty" data-upgraded=",MaterialTextfield">
+        <input class="mdl-textfield__input" asp-for="Deadline">
+        <label class="mdl-textfield__label" asp-for="Deadline"></label>
+        <span asp-validation-for="Deadline" class="mdl-textfield__error"></span>
+    </div>
+    <br><br>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" asp-for="Percentage">
+        <label class="mdl-textfield__label" asp-for="Percentage"></label>
+        <span asp-validation-for="Percentage" class="mdl-textfield__error"></span>
+    </div>
+    <br><br>
+    <input type="submit" value="Save" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" />
+</form>

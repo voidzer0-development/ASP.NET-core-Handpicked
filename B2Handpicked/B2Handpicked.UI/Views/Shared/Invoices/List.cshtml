@@ -1,0 +1,50 @@
+﻿@model IEnumerable<B2Handpicked.DomainModel.Invoice>
+
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th class="mdl-data-table__cell--non-numeric">
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th class="mdl-data-table__cell--non-numeric">
+                Customer
+            </th>
+            <th class="mdl-data-table__cell--non-numeric">
+                Label
+            </th>
+            <th class="mdl-data-table__cell--non-numeric">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+                @(item.Customer?.Name ?? "None")
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+                @(item.Label?.Name ?? "None")
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+                <a asp-controller="Invoices" asp-action="Details" asp-route-id="@item.Id"><i class="material-icons">info</i></a>
+                <a asp-controller="Invoices" asp-action="Edit" asp-route-id="@item.Id"><i class="material-icons">edit</i></a>
+                <a asp-controller="Invoices" asp-action="Delete" asp-route-id="@item.Id"><i class="material-icons">delete</i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

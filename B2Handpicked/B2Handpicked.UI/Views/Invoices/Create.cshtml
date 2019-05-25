@@ -1,0 +1,50 @@
+﻿@model Invoice
+
+@{
+    ViewData["Title"] = "Add new Invoice";
+}
+
+<h4>Add new Invoice</h4>
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" asp-for="Number">
+        <label class="mdl-textfield__label" asp-for="Number"></label>
+        <span asp-validation-for="Number" class="mdl-textfield__error"></span>
+    </div>
+    <br><br>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" asp-for="Value">
+        <label class="mdl-textfield__label" asp-for="Value"></label>
+        <span asp-validation-for="Value" class="mdl-textfield__error"></span>
+    </div>
+    <br><br>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty" data-upgraded=",MaterialTextfield">
+        <input class="mdl-textfield__input" asp-for="Date">
+        <label class="mdl-textfield__label" asp-for="Date"></label>
+        <span asp-validation-for="Date" class="mdl-textfield__error"></span>
+    </div>
+    <br><br>
+    <div>
+        <span>Customer</span><br>
+        @foreach (var customer in ViewBag.CustomerId) {
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-@customer.Id">
+                <input type="radio" id="option-@customer.Id" class="mdl-radio__button" asp-for="CustomerId" value="@customer.Id">
+                <span class="mdl-radio__label">@customer.Name</span>
+            </label><br>
+        }
+    </div>
+    <br>
+    <div>
+        <span>Label</span><br>
+        @foreach (var label in ViewBag.LabelId) {
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-@label.Id">
+                <input type="radio" id="option-@label.Id" class="mdl-radio__button" asp-for="LabelId" value="@label.Id">
+                <span class="mdl-radio__label">@label.Name</span>
+            </label><br>
+        }
+    </div>
+    <br>
+    <input type="submit" value="Add" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" />
+</form>

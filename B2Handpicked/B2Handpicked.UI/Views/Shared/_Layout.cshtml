@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="~/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon-16x16.png">
+    <link rel="manifest" href="~/site.webmanifest">
+    <link rel="mask-icon" href="~/safari-pinned-tab.svg" color="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>@ViewData["Title"] - B2 Handpicked Agencies</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-blue.min.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/LayoutStyle.css" />
+</head>
+<body>
+
+    <a asp-controller="Home" asp-action="Index" style="position:absolute; left: 24px; top: 16px; max-height: 56px; z-index: 50;">
+        <img src="~/images/logo.png" style="max-height: 56px;">
+    </a>
+
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header mdl-layout__header--transparent">
+            <div class="mdl-layout__header-row" style="height: 88px;">
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" asp-controller="ContactPersons" asp-action="Index">Contact persons</a>
+                    <a class="mdl-navigation__link" asp-controller="Customers" asp-action="Index">Customers</a>
+                    <a class="mdl-navigation__link" asp-controller="Deals" asp-action="Index">Deals</a>
+                    <a class="mdl-navigation__link" asp-controller="Employees" asp-action="Index">Employees</a>
+                    <a class="mdl-navigation__link" asp-controller="Invoices" asp-action="Index">Invoices</a>
+                    <a class="mdl-navigation__link" asp-controller="Labels" asp-action="Index">Labels</a>
+                </nav>
+
+                <div class="mdl-layout-spacer"></div>
+
+                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">account_circle</i>
+                </button>
+
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+                    @if (this.User.Identity.Name == null) {
+                        <li class="mdl-menu__item">
+                            <a asp-controller="Account" asp-action="Login">Login</a>
+                        </li>
+                        <li class="mdl-menu__item">
+                            <a asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                    } else {
+                        <li class="mdl-menu__item">
+                            <a asp-controller="Account" asp-action="Logout">Logout</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </header>
+        <main class="mdl-layout__content">
+            @RenderBody()
+        </main>
+    </div>
+</body>
+</html>

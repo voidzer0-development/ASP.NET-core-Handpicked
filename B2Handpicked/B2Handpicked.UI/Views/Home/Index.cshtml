@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h3>Management panel</h3>
+
+@if (this.User.Identity.Name != null) {
+    <h4>Welcome, @this.User.Identity.Name</h4>
+}

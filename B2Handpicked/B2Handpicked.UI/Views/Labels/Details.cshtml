@@ -1,0 +1,33 @@
+﻿@model B2Handpicked.DomainModel.Label
+
+@{
+    ViewData["Title"] = "Label details";
+}
+
+<h4>Label details</h4>
+
+<partial name="Labels/Details" model="Model" />
+
+<h5>Contact persons</h5>
+<partial name="ContactPersons/List" model="Model.ContactPersons" />
+
+<h5>Customers</h5>
+<partial name="Customers/List" model="Model.Customers" />
+
+<h5>Deals</h5>
+<partial name="Deals/List" model="Model.Deals" />
+
+<h5>Employees</h5>
+<partial name="Employees/List" model="Model.Employees" />
+
+<h5>Invoices</h5>
+<partial name="Invoices/List" model="Model.Invoices" />
+
+<br>
+<br>
+
+<a asp-action="Edit" asp-route-id="@Model.Id">
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-button--fab_bottom-right">
+        <i class="material-icons">edit</i>
+    </button>
+</a>

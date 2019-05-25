@@ -1,0 +1,56 @@
+﻿@model IEnumerable<B2Handpicked.DomainModel.Deal>
+
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th class="mdl-data-table__cell--non-numeric">
+                @Html.DisplayNameFor(model => model.Deadline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Percentage)
+            </th>
+            <th class="mdl-data-table__cell--non-numeric">
+                Customer
+            </th>
+            <th class="mdl-data-table__cell--non-numeric">
+                Label
+            </th>
+            <th class="mdl-data-table__cell--non-numeric">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @item.Deadline.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Percentage)
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @(item.Customer?.Name ?? "None")
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    @(item.Customer?.Label?.Name ?? "None")
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <a asp-controller="Deals" asp-action="Details" asp-route-id="@item.Id"><i class="material-icons">info</i></a>
+                    <a asp-controller="Deals" asp-action="Edit" asp-route-id="@item.Id"><i class="material-icons">edit</i></a>
+                    <a asp-controller="Deals" asp-action="Delete" asp-route-id="@item.Id"><i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

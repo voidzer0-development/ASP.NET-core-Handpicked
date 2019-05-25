@@ -1,0 +1,14 @@
+﻿@model B2Handpicked.DomainModel.Deal
+
+@{
+    ViewData["Title"] = "Delete deal";
+}
+
+<h4>Are you sure you want to delete this deal?</h4>
+
+<partial name="Deals/Details" model="Model" />
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button asp-action="Index" class="mdl-button mdl-js-button mdl-js-ripple-effect">Go back</button> <input type="submit" value="Delete" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--red mdl-color-text--white mdl-js-ripple-effect" />
+</form>

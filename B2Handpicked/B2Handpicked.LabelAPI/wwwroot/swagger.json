@@ -1,0 +1,409 @@
+{
+    "openapi": "3.0.0",
+    "servers": [
+        {
+            "description": "Default",
+            "url": "https://B2handpicked.azurewebsites.net/LabelAPI/api/v1"
+        }
+    ],
+    "info": {
+        "version": "1.0.0",
+        "title": "Handpicked Agencies Label API",
+        "description": "API voor Labels"
+    },
+    "security": [
+        {
+            "BearerAuth": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "Invoice",
+            "description": "Operations to manage Invoices."
+        }
+    ],
+    "paths": {
+        "/invoices": {
+            "get": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Returns a list with invoices.",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoicesResponse"
+                                }
+                            },
+                            "application/hal+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HALInvoicesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorised - token not present or valid"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Uploads a new Invoice.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InvoiceRequest"
+                            }
+                        }
+                    },
+                    "description": "The invoice object"
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceResponse"
+                                }
+                            },
+                            "application/hal+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HALInvoiceResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest - invalid request parameters"
+                    },
+                    "401": {
+                        "description": "Unauthorised - token not present or valid"
+                    }
+                }
+            }
+        },
+        "/invoices/{id}": {
+            "get": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Returns the invoice with id {id}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "The id of the invoice",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceResponse"
+                                }
+                            },
+                            "application/hal+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HALInvoiceResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest - invalid request parameters"
+                    },
+                    "401": {
+                        "description": "Unauthorised - token not present or valid"
+                    },
+                    "404": {
+                        "description": "NotFound - No invoice with {id} was found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Replaces the invoice at {id} with the new Invoice",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "The id of the invoice",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InvoiceRequest"
+                            }
+                        }
+                    },
+                    "description": "The new invoice object"
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "BadRequest - invalid request parameters"
+                    },
+                    "401": {
+                        "description": "Unauthorised - token not present or valid"
+                    },
+                    "404": {
+                        "description": "NotFound - No invoice with {id} was found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Deletes the invoice at {id}",
+                "deprecated": true,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "The id of the invoice",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoicesResponse"
+                                }
+                            },
+                            "application/hal+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HALInvoicesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BadRequest - invalid request parameters"
+                    },
+                    "401": {
+                        "description": "Unauthorised - token not present or valid"
+                    },
+                    "404": {
+                        "description": "NotFound - No invoice with {id} was found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
+        "schemas": {
+            "InvoiceRequest": {
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "type": "integer",
+                        "example": null
+                    },
+                    "value": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 749.99
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2018-10-08T14:00:00"
+                    },
+                    "customerId": {
+                        "type": "integer",
+                        "example": 6
+                    }
+                }
+            },
+            "InvoicesResponse": {
+                "type": "object",
+                "required": [
+                    "invoices"
+                ],
+                "properties": {
+                    "invoices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/InvoiceResponse"
+                        }
+                    }
+                }
+            },
+            "InvoiceResponse": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "labelId"
+                ],
+                "properties": {
+                    "number": {
+                        "type": "integer",
+                        "example": 4
+                    },
+                    "value": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 275
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2018-10-08T09:30:00"
+                    },
+                    "customerId": {
+                        "type": "integer",
+                        "example": null
+                    },
+                    "labelId": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "id": {
+                        "type": "integer",
+                        "example": 46
+                    }
+                }
+            },
+            "HALInvoicesResponse": {
+                "type": "object",
+                "required": [
+                    "_embedded",
+                    "_links"
+                ],
+                "properties": {
+                    "_links": {
+                        "type": "object",
+                        "required": [
+                            "self",
+                            "find"
+                        ],
+                        "properties": {
+                            "self": {
+                                "$ref": "#/components/schemas/HALLink"
+                            },
+                            "find": {
+                                "$ref": "#/components/schemas/HALLink"
+                            }
+                        }
+                    },
+                    "_embedded": {
+                        "type": "object",
+                        "required": [
+                            "invoices"
+                        ],
+                        "properties": {
+                            "invoices": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/HALInvoiceResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "HALInvoiceResponse": {
+                "type": "object",
+                "required": [
+                    "_links",
+                    "id",
+                    "labelId"
+                ],
+                "properties": {
+                    "_links": {
+                        "type": "object",
+                        "required": [
+                            "self",
+                            "customer"
+                        ],
+                        "properties": {
+                            "self": {
+                                "$ref": "#/components/schemas/HALLink"
+                            },
+                            "customer": {
+                                "$ref": "#/components/schemas/HALLink"
+                            }
+                        }
+                    },
+                    "number": {
+                        "type": "integer",
+                        "example": 4
+                    },
+                    "value": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 275
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2018-10-08T09:30:00"
+                    },
+                    "customerId": {
+                        "type": "integer",
+                        "example": null
+                    },
+                    "labelId": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "id": {
+                        "type": "integer",
+                        "example": 46
+                    }
+                }
+            },
+            "HALLink": {
+                "type": "object",
+                "required": [
+                    "href"
+                ],
+                "properties": {
+                    "href": {
+                        "type": "string"
+                    },
+                    "templated": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}

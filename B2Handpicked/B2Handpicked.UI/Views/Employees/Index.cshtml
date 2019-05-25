@@ -1,0 +1,14 @@
+﻿@model IEnumerable<B2Handpicked.DomainModel.Employee>
+
+@{
+    ViewData["Title"] = "Employees";
+}
+<h4>Employees</h4>
+
+<partial name="Employees/List" model="Model" />
+
+<a asp-action="Create">
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-button--fab_bottom-right">
+        <i class="material-icons">add</i>
+    </button>
+</a>

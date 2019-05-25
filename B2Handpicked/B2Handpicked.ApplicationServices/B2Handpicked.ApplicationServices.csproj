@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <UpgradeBackupLocation>C:\Users\void1337\Source\Repos\B2\B2Handpicked\Backup\B2Handpicked.ApplicationServices\</UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Halcyon.Mvc" Version="2.5.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\B2Handpicked.DomainModel\B2Handpicked.DomainModel.csproj" />
+    <ProjectReference Include="..\B2Handpicked.DomainServices\B2Handpicked.DomainServices.csproj" />
+  </ItemGroup>
+</Project>
